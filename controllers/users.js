@@ -5,6 +5,7 @@ const NotFoundError = require('../utils/not-found-error');
 const BadRequestError = require('../utils/bad-request-error');
 const ConflictError = require('../utils/conflict-error');
 const UnauthorizedError = require('../utils/unauthorized-error');
+const { JWT_DEV } = require('../config');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -52,7 +53,7 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.updateProfile = (req, res, next) => {
-  const ownerId = req.body._id;
+  const ownerId = req.user._id;
   const { name, email } = req.body;
   User.findByIdAndUpdate(ownerId, { name, email }, { new: true, runValidators: true })
     .then((user) => {
@@ -81,7 +82,7 @@ module.exports.login = (req, res, next) => {
         if (!matched) {
           throw new UnauthorizedError('Неправильная почта или пароль');
         }
-        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : JWT_DEV, { expiresIn: '7d' });
 
         return res.send({ token });
       });
