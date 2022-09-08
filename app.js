@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const limiter = require('./middlewares/limiter');
 const routes = require('./routes');
 const validationErrors = require('./middlewares/errors');
-const DEVBASE = require('./config');
+const { DEVBASE } = require('./config');
 
 const { PORT = 3000, NODE_ENV, DATABASE } = process.env;
 
