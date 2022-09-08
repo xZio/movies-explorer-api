@@ -9,14 +9,6 @@ module.exports.getMovies = (req, res, next) => {
       res.send(movies);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        next(
-          new BadRequestError(
-            'Переданы некорректные данные для получения фильмов',
-          ),
-        );
-        return;
-      }
       next(err);
     });
 };
