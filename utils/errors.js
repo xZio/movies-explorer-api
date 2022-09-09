@@ -1,0 +1,13 @@
+const BAD_REQUEST = 400;
+const UNAUTHORIZED = 401;
+const FORBITTEN = 403;
+const NOT_FOUND = 404;
+const CONFLICT = 409;
+
+module.exports = {
+  BAD_REQUEST,
+  UNAUTHORIZED,
+  FORBITTEN,
+  NOT_FOUND,
+  CONFLICT,
+};
