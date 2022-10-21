@@ -23,14 +23,14 @@ const signinValidation = celebrate({
   }),
 });
 
-const createMovieValidatin = celebrate({
+const createMovieValidation = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().custom(isValidUrl),
+    image: Joi.object().required(),
     trailerLink: Joi.string().required().custom(isValidUrl),
     thumbnail: Joi.string().required().custom(isValidUrl),
     nameRU: Joi.string().required(),
@@ -56,7 +56,7 @@ const updateProfileValidation = celebrate({
 module.exports = {
   signinValidation,
   signupValidation,
-  createMovieValidatin,
+  createMovieValidation,
   deleteMovieValidation,
   updateProfileValidation,
 };
