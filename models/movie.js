@@ -25,10 +25,6 @@ const userSchema = new mongoose.Schema({
   image: {
     type: Object,
     required: true,
-    /* validate: {
-      validator: (image) => validator.isURL(image.url),
-      message: 'Неверная ссылка',
-    }, */
   },
   trailerLink: {
     type: String,
